@@ -1,0 +1,8 @@
+.idea
+.hg
+
+fabfile.py
+settings.py
+
+*.log
+*.pyc

@@ -1,0 +1,3 @@
+#!/usr/bin/env	bash
+
+exec envuidgid www-data /usr/www/filesharing/sharing.py

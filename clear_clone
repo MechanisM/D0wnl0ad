@@ -1,0 +1,3 @@
+#!/bin/bash
+
+find /usr/www/filesharing/files/* -mtime +1 -delete

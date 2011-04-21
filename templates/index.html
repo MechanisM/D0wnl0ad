@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>d0wnl0ad</title>
+    <link rel="author" title="presidentua" href="mailto:spirt40@gmail.com" />
+    <link rel="shortcut icon" href="/favicon.ico">
+    <style>
+        body { background-color: #e9eef2; font-family: 'Bookman Old Style', 'Serifa BT', 'URW Bookman L', 'itc bookman', times, serif; }
+        h1 { text-align:center; }
+        h1 a { text-decoration:none; color: black;}
+        ul { text-align:center; display:block; font-size: 14px; list-style:none; margin:0; padding:0; }
+        form { text-align:center; margin-top:50px; }
+        button { border:1px black solid; font-weight:bold; padding:2px 30px; }
+        input { border:1px black solid; }
+        #author { position:absolute;right:10px;top:0; margin-top:0;font-size:13px; }
+        #ps { position:absolute;bottom:0; font-style:italic; right:10px; }
+        div { text-align:center; margin-top:40px; }
+        #share_link { width:400px; }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script>
+        if (!window.$) {
+            document.write('<script type="text/javascript" src="/static/jquery-1.4.4.min.js"><\/script>');
+        }
+    </script>
+    <script src="/static/jquery.html5_upload.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('body').filedrop({
+                url: '/upload',
+                paramname: 'file',
+                error: function(err, file) {
+                    //err
+                },
+                maxfiles: 25,
+                maxfilesize: 100,
+                dragOver: function() {
+                    $("body").css("background-color", "#e9eef2");
+                },
+                dragLeave: function() {
+                    $("body").css("background-color", "#e9fef2");
+                },
+                drop: function() {
+                    //start loading
+                },
+                uploadStarted: function(i, file, len){
+                    // a file began uploading
+                    // i = index => 0, 1, 2, 3, 4 etc
+                    // file is the actual file of the index
+                    // len = total files user dropped
+                },
+                uploadFinished: function(i, file, response, time) {
+                    // response is the data you got back from server in JSON format.
+                },
+                rename: function(name) {
+                    // name in string format
+                    // must return alternate name as string
+                },
+                beforeEach: function(file) {
+                    // file is a file object
+                    // return false to cancel upload
+                },
+                afterAll: function() {
+                    // stop loading, redirect
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+    <div id="author">by <a href="http://tutamc.com/">presidentua</a></div>
+    <h1><a href="/">D0wnl0ad</a></h1>
+    <ul>
+        <li>Load file</li>
+        <li>Give link to friend</li>
+        <li>And be sure then only your friend could download it</li>
+        <li>After downloading file will be deleted automaticly or after 24 hours</li>
+    </ul>
+
+    <div>
+        {% if share %}
+        <strong>{{ filename }}</strong>
+        <br>
+        <span >Share link: <input id="share_link" type="text" value="http://d0wnl0ad.org.ua/{{ share }}"></span>
+        <script>
+            document.getElementById("share_link").focus();
+            document.getElementById("share_link").select();
+        </script>
+        {% end %}
+        &nbsp;
+    </div>
+
+    <div id="div_form">
+         <form method="post" enctype="multipart/form-data" action="/upload">
+            <input type="file" name="file" />*
+            <br />
+            <button>l0ad</button>
+        </form>
+    </div>
+    <div id="ps">* I have rights for send the file for people</div>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18220556-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</body>
+</html>
